@@ -337,11 +337,103 @@ px(pixel) 한 가지이다. 모니터의 화면을 구성하는 사각형 1개�
 	-line-height가 font-size보다 작으면 윗줄과 아랫줄의 텍스트가 겹쳐 보이면서 가독성이 떨어질 수 있다. 따라서 line-height는 속성값을 항상 font-size보다 크게 지정하는 편이 좋다.
 
 
+<박스 모델을 구성하는 속성 다루기>
+박스모델 : 모든 HTML 요소가 사각형의 박스로 둘러 쌓여 있다는 개념. HTML 문서에서 사용된 각각의 요소가 어떤 원리로 웹 브라우저에 배치되어 표시되는지 이해하기 위해 필요한 개념이다. 박스 형태의 요소들을 하나씩 원하는 곳에 배치해 원하는 모양으로 만들어 나가는 것이 웹 페이지를 만드는 핵심이다.
+
+CSS의 박스 모델(Box Model) 개념에 따르면, HTML의 각 태그는 하나의 사각형 상자로 표현된다. 이 상자는 4가지 층으로 구성된다.
+박스 모델의 구성요소 : margin, border, padding, content
+핵심) 모델 구성 요소( margin, border, padding, content)는 HTML의 각 요소마다 독립적으로 적용된다. 즉, 페이지 안에 있는 모든 태그마다 따로 정의되고 적용된다고 생각하면 된다.
+
+1. margin 영역 : 박스 모델에서 가장 외부에 있는 영역. 요소의 외부 여백을 담당한다.
+박스모델은 사각형 모양이라서 각 방향에 해당하는 속성이 독립적으로 존재한다. margin영역을 다룰 때 사용할 수 있는 속성으로는 margin-top, margin-right, margin-bottom, margin-left가 있고, 모든 방향을 통합해 margin 속성으로 사용할 수도 있다. 속성값에는 크기를 넣으면 된다.
+ex) margin-top:<크기>;  ,  margin: <margin-top> <margin-right> <margin-bottom> <margin-left>; 등 방법이 많다.
+네 방향을 한번에 정할 수 있는 margin속성은 속성값을 작성하는 방법에 따라 적용되는 방식이 달라진다. 
+	-3개를 적으면 순서대로 margin-top, margin-right, margin-bottom의 값이고, 생략된 margin-left 값은 마주보는 margin-right와 같은 값을 적용한다.
+	-2개를 적으면 (margin-top, margin-bottom) (margin-left, margin-right)가 그룹으로 묶여 같은 값으로 지정된다.
+	-1개를 적으면 모든 방향이 같은 값을 가지게 된다.
+
+margin 겹침 현상 : 인접한 margin 값이 둘 중 더 큰 값으로 통일되는 것을 말한다. 이때, 합쳐지는 게 아니라 더 큰 값을 가진 margin 영역이 된다. 즉 같은 레벨(형제 관계)에 있는 요소들의 margin 영역이 중첩되면 더 큰 값을 가진 margin 영역으로 병합되어 출력된다.
+ex) 두 요소 사이에서 한 요소의 margin-bottom값이 20px이고, 다른 한 요소의 margin-top값이 30px이라면 두 요소 사이의 간격은 50px이 되는 것이 아니라 30px이 적용된다.
+
+2. border 영역 : margin보다 안쪽에 위치하며 요소의 테두리(경계선)를 담당한다.
+border영역도 margin 영역과 마찬가지로 상하좌우 4방향의 속성이 있다. 또한 border 속성은 margin 속성과 달리 여러 속성값이 복합적으로 사용된다.
+형식 : border : <border-width> <border-style> <color>;
+ex) border : 2px solid blue;
+border속성과 border-<방향>속성 모두 똑같이 border-width, border-style, color속성값을 사용한다. 
+
+요약) border 속성은 한 줄로 여러 가지 설정을 할 수 있는 단축 속성(shorthand)이다. 단축속성이란, 속성값으로 다른 속성의 값을 사용하는 속성을 말한다. 이 속성들은 여러 개의 다른 속성을 하나의 속성으로 축약해서 작성한다.
+
+border-width 속성 : 테두리의 굵기 지정. 속성값으로는 단위를 포함한 크기를 사용.
+border-style 속성 : 테두리모양 지정.
+color는 이전에 배웠던 것과 동일.
 
 
+3. padding 영역 : margin, border영역보다 안쪽에 있으며 요소의 내부 여백을 담당한다.
+padding 영역에서 사용할 수 있는 속성은 margin 영역에서 사용한는 속성과 형식이 매우 비슷하다.
 
 
+4. content 영역 : 시작 태그와 종료 태그 사이에 사용된 콘텐츠가 속하는 영역. 따라서 달느 박스 모델의 구성 요소와는 다르게 content 영역은 content 영역 자체를 다루는 속성이 없다.
+content 영역에 영향을 주는 속성
+	1) width와 height 속성	width:<크기>; height:<크기>;
+	2) box-sizing 속성 : 화면에 보이는 요소의 width와 height는 "외부 여백인 margin 영역을 제외하고" border, padding, content 영역을 전부 포함한 크기가 된다. 따라서 어떤 요소를 화면에 표시할 때 처음 의도한 것처럼 100px로 표시하려면 width 속성값을 더 작게 설정하거나, box-sizing속성을 사용한다.
+		-box-sizing:<속성값>;  : width, height 속성의 적용 기준을 지정한다. 기본으로 content-box값이 적용된다.
+		-속성값으로는 content-box(width, height 속성의 적용 범위를 content 영역으로 제한한다.)와 border-box(width, height 속성의 적용 범위를 border 영역으로 제한한다.즉, content+padding+border 계산한다는 소리이다.)가 있다.
 
+<박스 모델의 성격과 display 속성>
+HTML의 모든 태그는 박스 모델을 가지고 있는데, 이를 자세히 들여다보면 박스 모델도 블록, 인라인, 인라인 블록이라는 서로 다른 성격이 존재한다.
+블록 성격 : hn, p, div 태그를 사용했을 때 요소의 너비가 콘텐츠 유무와 상관없이 항상 가로 한 줄을 다 차지하는 것을 말한다. 그래서 이 태그들을 여러번 사용하면 무조건 줄 바꿈된다.
+
+인라인 성격 : a, span, strong 태그를 사용했을 때 요소의 너비를 콘텐츠 크기만큼만 차지하는 성격을 말한다. 그래서 이 태그들을 여러번 사용할 때 웹 브라우저의 수평 공간이 남아 있으면 한 줄로 배치된다.
+
+인라인 블록 성격 : 인라인 성격처럼 요소의 너비가 콘텐츠의 크기만큼만 차지하지만, 그 외의 성격은 블록 성격을 가지는 복합적인 성격을 말한다.
+img태그를 사용할 때 웹 브라우저의 수평공간이 남아있으면 한 줄로 배치된다.
+
+블록 vs 인라인 vs 인라인 블록
+위 3가지 성격은 박스 모델의 구성요소와 관련한 속성을 적용할 때 조금씩 차이가 있다.
+블록과 인라인 블록은 width, height, margin, padding 속성이 전부 적용된다. 인라인 성격은 width, height 속성은 적용되지 않고 padding과 margin 속성은 각각 왼쪽과 오른쪽 방향만 적용된다. 
+ex) span 태그에 width 속성이나 height 속성을 지정하면 너비와 높이가 설정되지 않는다. padding속성과 margin 속성도 위쪽과 아래쪽은 적용되지 않는다.
+
+display 속성
+HTML 태그가 기본으로 가지고 있는 박스 모델의 성격은 display 속성을 사용하면 변경할 수 있다. 속성값 : block, inline, inline-block 사용.
+ex) 블록 성격인 태그를 인라인 성격으로 바꾸고 싶다면 dispaly 속성값을 inline으로 지정하면 된다.
+
+
+<배경 속성으로 요소의 배경 설정하기>
+박스모델에서 padding과 content 영역은 요소의 배경을 나타내는 영역이다. 박스 모델의 배경에는 색상이나 이미지와 같은 스타일을 지정할 수 있다.
+
+1. background-color:<색상값>;
+
+2. background-image:url('이미지 경로'); 요소의 배경에 background-image 속성을 사용하면 이미지를 넣을 수 있다.
+주의사항
+	-요소의 배경 크기가 반드시 있어야 한다. 이 속성은 요소의 배경에 이미지를 삽입하는 원리이기 때문에 요소 배경의 width와 height를 지정해야한다. background-color 속성도 해당한다.
+	-이미지의 크기가 요소의 배경 크기와 맞지 않으면 어색하게 보인다. 요소 배경이 삽입하려는 이미지보다 작으면 잘려보이고, 크면 반복되어 채워진다.
+
+3. background-repeat:<속성값>; 
+위에서 크면 반복되어 채워지는데, 이미지 반복 설정을 바꾸려면 background-repeat 속성을 사용한다. 
+	속성값에 따라 바뀌는 설정 : no-repeat, repeat-x, repeat-y, repeat, round, space
+
+4. background-size:auto|cover|contain|<너비 높이>;
+	요소의 배경 크기가 이미지보다 작을 때 이미지가 잘려보이는 문제를 해결할 수 있다. 위 속성으로 이미지 크기를 지정해서 처리한다.
+
+5. background-position:<x 위치><y 위치>;
+삽입하려는 이미지의 위치를 결정할 수 있다.
+
+cf) 100%는 비율에서 가장 큰 값이기 때문에 x축에 사용하면 가장 오른쪽, y축에 사용하면 가장 아래쪽을 의미한다.
+
+6. background-attachment:<속성값>;
+요소에 삽입된 이미지를 스크롤할 때, 이미지의 작동 방식을 결정한다.
+
+7. background 속성으로 한 번에 지정하기
+앞에서 배운 배경 속성들을 background 속성으로 한 번에 지정할 수 있다.
+순서는 상관없고, background-size 속성은 항상 background-position 속성값을 먼저 작성하고 나서 /로 구분한 후 사용해야 한다.
+background:<color 속성값> <image 속성값> <repeat 속성값> <position 속성값/size 속성값> <attachment 속성값>;
+
+
+<위치 속성으로 HTML 요소 배치하기>
+CSS에서 제공하는 속성 중에는 HTML 요소를 기본 흐름에서 벗어나서 원하는 곳에 배치할 수 있는 속성이 있다. 이 속성들은 요소의 위치에 관여한다고 해서 위치속성 이라고 한다.
+
+1. position:<속성값>;
+HTML 요소를 기본 흐름에서 벗어나 좌푯값에 따라 배치할 때 사용한다.
 
 
 
