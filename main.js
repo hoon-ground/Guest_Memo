@@ -6,6 +6,7 @@ function blink(){
 }
 setInterval(blink, 500);
 
+//문자열 나열
 function randomString(){
     let stringArr = ["Do! and then regret.", "Positive power can change my life.", "Better tomorrow than yesterday."];
     let selectString = stringArr[Math.floor(Math.random() * stringArr.length)];
@@ -32,3 +33,9 @@ function dynamic(randomArr){
 }
 
 dynamic(randomString());
+
+//target section으로 이동
+function scrollToSection(){
+    document.getElementById("target").scrollIntoView({ behavior: "smooth"});
+}
+
