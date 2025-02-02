@@ -39,3 +39,37 @@ function scrollToSection(){
     document.getElementById("target").scrollIntoView({ behavior: "smooth"});
 }
 
+function addItem(){
+    const itemInput = document.getElementById("create");
+    const content = itemInput.value.trim();
+
+    if (content === ""){
+        alert("Please enter your message.")
+    }
+    const newPost = document.createElement("li");
+    newPost.classList.add("post-item");
+
+    const textarea = document.createElement("textarea");
+    textarea.value = content;
+    textarea.readOnly = true;
+    
+    const editButton = document.createElement("button");
+    editButton.innerText = "Edit";
+    editButton.onclick = function(){
+        if(textarea.readOnly){
+            textarea.readOnly = false;
+            editButton.innerText = "Save";
+        } else{
+            textarea.readOnly = true;
+            editButton.innerText = "Edit";
+        }
+    };
+
+    newPost.appendChild(textarea);
+    newPost.appendChild(editButton);
+
+    document.getElementById("my-post").appendChild(newPost);
+
+    itemInput.value = "";
+}
+
