@@ -77,6 +77,12 @@ body{
     text-align:center;
     height: 100px;
     width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fdf6e3;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
 }
 
 #my-post {
@@ -104,4 +110,32 @@ body{
 .post-item textarea {
     width: 100%; /*부모 크기에 맞춤*/
     text-align: center; /*텍스트 내용 가운데 정렬*/
+}
+
+textarea {
+    width: 90%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #d3c5b8;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #4a3d35;
+    background-color: #fffaf0;
+    resize: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #8b5e3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #6f4228;
 }

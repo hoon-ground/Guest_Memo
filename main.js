@@ -39,13 +39,14 @@ function scrollToSection(){
     document.getElementById("target").scrollIntoView({ behavior: "smooth"});
 }
 
-//create 기능
-function addItem(){
+//Create
+function setItem(){
     const itemInput = document.getElementById("create");
     const content = itemInput.value.trim();
 
     if (content === ""){
         alert("Please enter your message.")
+        return;
     }
     const newPost = document.createElement("li");
     newPost.classList.add("post-item");
@@ -54,23 +55,34 @@ function addItem(){
     textarea.value = content;
     textarea.readOnly = true;
     
-    const editButton = document.createElement("button");
-    editButton.innerText = "Edit";
-    editButton.onclick = function(){
+    //Update
+    const updateButton = document.createElement("button");
+    updateButton.innerText = "Edit";
+    updateButton.onclick = function(){
         if(textarea.readOnly){
             textarea.readOnly = false;
-            editButton.innerText = "Save";
+            updateButton.innerText = "Save";
         } else{
             textarea.readOnly = true;
-            editButton.innerText = "Edit";
+            updateButton.innerText = "Edit";
         }
     };
 
+    //Delete
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+    deleteButton.onclick = function(){
+        newPost.remove();
+    }
+
     newPost.appendChild(textarea);
-    newPost.appendChild(editButton);
+    newPost.appendChild(updateButton);
+    newPost.appendChild(deleteButton);
 
     document.getElementById("my-post").appendChild(newPost);
 
     itemInput.value = "";
+
+    newPost.scrollIntoView({behavior: "smooth", block: "end"});
 }
 
