@@ -39,6 +39,7 @@ function scrollToSection(){
     document.getElementById("target").scrollIntoView({ behavior: "smooth"});
 }
 
+//create 기능
 function addItem(){
     const itemInput = document.getElementById("create");
     const content = itemInput.value.trim();
