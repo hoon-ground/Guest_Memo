@@ -1,4 +1,4 @@
-# bulletin_board
+# Guest's Memo
 
 
 # 1. 기능 구현
