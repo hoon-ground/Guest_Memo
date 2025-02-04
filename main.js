@@ -49,7 +49,7 @@ function setItem(){
         return;
     }
     const newPost = document.createElement("li");
-    newPost.classList.add("post-item");
+    newPost.classList.add("post-item"); //post-item 클래스를 추가.
 
     const textarea = document.createElement("textarea");
     textarea.value = content;
@@ -75,9 +75,14 @@ function setItem(){
         newPost.remove();
     }
 
+    const buttonbox = document.createElement("div");
+    buttonbox.classList.add("buttonboxes");
+    buttonbox.appendChild(updateButton);
+    buttonbox.appendChild(deleteButton);
+
     newPost.appendChild(textarea);
-    newPost.appendChild(updateButton);
-    newPost.appendChild(deleteButton);
+    newPost.appendChild(buttonbox);
+    //위 두 요소들은 형제요소가 된다.
 
     document.getElementById("my-post").appendChild(newPost);
 

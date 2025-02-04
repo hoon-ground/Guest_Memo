@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My homeground</title>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
     <link href="style.css" rel="stylesheet">
     <style>
     </style>
@@ -14,12 +14,11 @@
     <div class="wrap">
     <h1>
         <span class="material-symbols-outlined">two_pager</span>
+        <!-- Google Fonts의 아이콘 폰트가 클래스명을 기반으로 자동 적용되기 때문에 클래스명 안바꾸는 것이 좋다. -->
     </h1>
-    <p class="main-text">Welcome to my homeground.</p>
-    <p id="dynamic" class="lg-text">
-    </p>
-    
-    <p><button class="sm-text" onclick="scrollToSection()">Click here to leave a message below.</button></p>
+    <p class="first-text">Welcome to my homeground.</p>
+    <p id="dynamic" class="second-text"></p>
+    <p><button class="third-text" onclick="scrollToSection()">Click here to leave a message below.</button></p>
     </div>
 
     <div id="target">
@@ -27,10 +26,12 @@
         <button onclick="setItem()">Submit</button>
     </div>
 
-    <ul id="my-post">
-        <li class="post-item">
-        </li>
-    </ul>
+    <div>
+        <ul id="my-post">
+            <li class="post-item">
+            </li>
+        </ul>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
