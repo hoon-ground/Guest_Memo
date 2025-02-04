@@ -6,20 +6,151 @@
     <title>My homeground</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
     <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
     </style>
 </head>
 
 <body>
-    <div class="wrap">
-    <h1>
-        <span class="material-symbols-outlined">two_pager</span>
-        <!-- Google Fonts의 아이콘 폰트가 클래스명을 기반으로 자동 적용되기 때문에 클래스명 안바꾸는 것이 좋다. -->
-    </h1>
-    <p class="first-text">Welcome to my homeground.</p>
-    <p id="dynamic" class="second-text"></p>
-    <p><button class="third-text" onclick="scrollToSection()">Click here to leave a message below.</button></p>
-    </div>
+    <header>
+        <div class="container">
+            <h1>
+                <button data-animation-scroll="true" data-target="#main">HOON</button>
+            </h1>
+            <nav>
+                <ul>
+                    <li>
+                        <button data-animation-scroll="true" data-target="#about">ABOUT ME</button>
+                    </li>
+                    <li>
+                        <button data-animation-scroll="true" data-target="#features">FEATURES</button>
+                    </li>
+                    <li>
+                        <button data-animation-scroll="true" data-target="#target">GUEST'S MEMO</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="wrap">
+            <h1>
+                <span class="material-symbols-outlined">two_pager</span>
+                <!-- Google Fonts의 아이콘 폰트가 클래스명을 기반으로 자동 적용되기 때문에 클래스명 안바꾸는 것이 좋다. -->
+            </h1>
+            <p class="first-text">Welcome to my homeground.</p>
+            <p id="dynamic" class="second-text"></p>
+            <p><button class="third-text" onclick="scrollToSection()">Click here to leave a message below.</button></p>
+            <button class="mouse" disabled><i class="fa-solid fa-computer-mouse"></i></button>
+            </div>
+    </main>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="title">
+                <h4>Who Am I</h4>
+                <h2>About Me</h2>
+            </div>
+            <div class="about-self">
+                <div class="left">
+                    <img src="./profile.jpg" alt="">
+                </div>
+                <div class="right">
+                    <h3>I'm <strong>hoon_ground</strong></h3>
+                    <p>I'm studying Computer Engineering.</p>
+                    <p>Belong to Kyungpook National University.</p>
+                    <p>3rd year student in 2025.</p>
+                    <p>CONTACT : break_the_limit@naver.com</p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/hoon_ground" target="_blank">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/hoon-ground" target="_blank">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://breakthelimit.tistory.com" target="_blank">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="features" class="do">
+        <div class="container">
+            <div class="title">
+                <h4>Features</h4>
+                <h2>Acquired Programming language</h2>
+            </div>
+            <div class="do-me">
+                <div class="do-inner">
+                    <div class="icon">
+                        <i class="fa-solid fa-c"></i>
+                    </div>
+                    <div class="content">
+                        <h3>C, C++</h3>
+                        <p>Project : <br><strong>Chat & Mafia game</strong></p>
+                        <br>
+                        <br>
+                        <p id="hyperlink"><a href="https://github.com/hoon-ground/ELEC462teamproject" target="_blank">Click here to see.</a></p>
+                    </div>
+                </div>
+                <div class="do-inner">
+                    <div class="icon">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <div class="content">
+                        <h3>Python</h3>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p>Use to study algorithm.</p>
+                    </div>
+                </div>
+                <div class="do-inner">
+                    <div class="icon">
+                        <i class="fa-brands fa-html5"></i>
+                        <i class="fa-brands fa-css3-alt"></i>
+                        <i class="fa-brands fa-js"></i>
+                    </div>
+                    <div class="content">
+                        <h3>HTML CSS JS</h3>
+                        <br>
+                        <br>
+                        <p>Use to study Front-end.</p>
+                    </div>
+                </div>
+                <div class="do-inner">
+                    <div class="icon">
+                        <i class="fa-brands fa-java"></i>
+                    </div>
+                    <div class="content">
+                        <h3>Java</h3>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p>Currently learning.</p>
+                    </div>
+                </div>
+                <div class="do-inner">
+                    <div class="icon">
+                        <i class="fa-brands fa-react"></i>
+                    </div>
+                    <div class="content">
+                        <h3>React</h3>
+                        <br>
+                        <p>Currently learning to learn front-end professionally.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg"></div>
+    </section>
 
     <div id="target">
         <textarea placeholder="Here to leave a message." id="create"></textarea>

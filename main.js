@@ -39,6 +39,38 @@ function scrollToSection(){
     document.getElementById("target").scrollIntoView({ behavior: "smooth"});
 }
 
+//header 영역 동적 스타일 적용
+const headerE1 = document.querySelector("header");
+window.addEventListener('scroll', function(){
+    this.requestAnimationFrame(scrollCheck);
+});
+
+function scrollCheck(){
+    let browseScrollY = window.scrollY ? window.scrollY : window.pageYOffset;
+    if(browseScrollY > 0){ //if문을 이용해 active클래스를 추가하거나 삭제.
+        headerE1.classList.add("active");
+    }else{
+        headerE1.classList.remove("active");
+    }
+}
+
+//부드러운 이동 animation 구현
+const animationMove = function(selector){
+    const targetE1 = document.querySelector(selector);
+    const browserScrollY = window.pageYOffset;
+    const targetScrollY = targetE1.getBoundingClientRect().top + browserScrollY;
+    window.scrollTo({ top:targetScrollY, behavior:'smooth'});
+};
+
+//스크롤 이벤트 연결
+const scrollMoveE1 = document.querySelectorAll("[data-animation-scroll='true']");
+for(let i = 0; i <scrollMoveE1.length; i++){
+    scrollMoveE1[i].addEventListener('click', function(e){
+        const target = this.dataset.target;
+        animationMove(target);
+    });
+}
+
 //Create
 function setItem(){
     const itemInput = document.getElementById("create");

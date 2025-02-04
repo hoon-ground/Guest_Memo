@@ -3,9 +3,237 @@
     padding:0;
     box-sizing: border-box;
 }
+/*초기화*/
+
+a, a:link, a:visited{
+    color:inherit;
+    text-decoration:none;
+}
+
+li{
+    list-style:none;
+}
 
 body{
     background-color:olive;
+}
+
+.container{
+    width:1140px;
+    margin:0 auto;
+}
+
+header{
+    position:fixed;
+    color:white;
+    top:0;
+    z-index:1;
+    width:100%;
+    padding:1rem;
+}
+
+header.active{
+    background-color:#050505;
+    animation:fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+header .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+}
+
+header nav ul{
+    display:flex;
+}
+
+header nav ul li{
+    padding:10px;
+}
+
+header button{
+    background:transparent;
+    border:0;
+    cursor:pointer;
+}
+
+header h1 button{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+header nav ul li button{
+    font-size:1.2rem;
+    color:white;
+}
+
+main{
+    width:100%;
+    height:100vh;
+    color:white;
+    background:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(./guestbook.png) center center;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+main button.mouse{
+    background-color:transparent;
+    border:none;
+    color:white;
+    font-size:2rem;
+    position:absolute;
+    bottom:1rem;
+    left:50%;
+    transform:translateX(-50%);
+    animation:upDown 1s ease-in-out infinite;
+    cursor:pointer;
+}
+
+@keyframes upDown{
+    0%{
+        bottom:1rem;
+    }
+    50%{
+        bottom:1.5rem;
+    }
+    100%{
+        bottom:1rem;
+    }
+}
+
+section{
+    font-family:"Poppins", sans-serif;
+    padding:5rem 0;
+}
+
+section:nth-child(2n){
+    background-color:#f8f8f8;
+}
+
+section .title{
+    margin-bottom:3rem;
+}
+
+section .title h4{
+    font-size:1.35rem;
+    color:#db3e17;
+    position:relative;
+}
+
+section .title h2{
+    font-size:3.5rem;
+}
+
+section .title p{
+    font-size:1.15rem;
+}
+
+section .about-self::after{
+    content:"";
+    clear:both;
+    display:block;
+}
+
+section .about-self .left{
+    width:50%;
+    float:left;
+}
+
+section .about-self .left img{
+    max-width:70%;
+}
+
+section .about-self .right{
+    width:50%;
+    float:left;
+    padding:0 2rem;
+}
+
+section .about-self .right h3{
+    font-size:2.25rem;
+    margin-bottom:1rem;
+}
+
+section .about-self .right h3 strong{
+    color:#0c1ae0;
+}
+
+section .about-self .right p{
+    font-size:1.15rem;
+    margin:1rem 0;
+}
+
+section .about-self .right .social a{
+    font-size:2.5rem;
+    margin-right:0.2rem;
+}
+
+section .do-me::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+section .do-me .do-inner{
+    background-color:#fff;
+    width:15%;
+    padding:2rem;
+    float:left;
+    margin-right:5%;
+    cursor:pointer;
+    text-align:center;
+}
+
+section .do-me .do-inner:last-child{
+    margin-right:0;
+}
+
+section .do-me .do-inner .icon i{
+    font-size:2.5rem;
+    color:#05bdf5;
+}
+
+section .do-me .do-inner .content h3{
+    font-size:2rem;
+    margin:1rem 0;
+}
+
+section .do-me .do-inner .content p{
+    font-size:1rem;
+}
+
+section .do-me .do-inner:hover{
+    background-color:rgb(40, 17, 245);
+    color:white;
+}
+
+section .do-me .do-inner:hover i{
+    color:rgb(247, 104, 10);
+}
+
+#hyperlink{
+    font-size:0.8rem;
+}
+
+.bg{
+    margin-top:100px;
+    background:url('./code.jpg') center center;
+    background-size:cover;
+    background-attachment:fixed;
+    height:600px;
 }
 
 .wrap{
@@ -152,4 +380,85 @@ button:hover{
 #target *{
     font-family:sans-serif!important;
     font-weight:bold!important;
+}
+
+/* 반응형 코드 적용 */
+@media screen and (max-width:1140px){
+    main .container{
+        width:992px;
+    }
+    section .container{
+        width:600px;
+    }
+    section .about-self .left{
+        width:100%;
+        margin-bottom:1.5rem;
+    }
+    section .about-self .right{
+        width:100%;
+        padding:0;
+    }
+    section .do-me .do-inner{
+        width:48%;
+        margin-bottom:1.5rem;
+        margin-right:0;
+    }
+    section .do-me .do-inner:nth-child(2n+1){
+        margin-right:4%;
+    }
+}
+
+@media screen and (max-width:992px){
+    html{
+        font-size:14px;
+    }
+    main .container{
+        width:768px;
+    }
+}
+
+@media screen and (max-width:768px){
+    html{
+        font-size:13px;
+    }
+    main .container{
+        width:576px;
+    }
+    section .container{
+        width:400px;
+    }
+    section .do-me .do-inner{
+        width:100%;
+        margin-right:0;
+    }
+}
+
+@media screen and (max-width:576px){
+    html{
+        font-size:12px;
+    }
+    main .container{
+        width:400px;
+    }
+    section .container{
+        width:360px;
+    }
+}
+
+@media screen and (max-width:400px){
+    html{
+        font-size:11px;
+    }
+    main .container{
+        width:320px;
+    }
+    section .container{
+        width:320px;
+    }
+    main h4{
+        font-size:1.5rem;
+    }
+    section .title h2{
+        font-size:3rem;
+    }
 }
