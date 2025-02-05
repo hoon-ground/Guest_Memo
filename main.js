@@ -71,6 +71,21 @@ for(let i = 0; i <scrollMoveE1.length; i++){
     });
 }
 
+//타임스탬프 기록 생성
+function getTimestamp() {
+    const now = new Date();
+    const year = now.getFullYear().toString().slice(-2); //YY
+    const month = (now.getMonth() + 1).toString().padStart(2, "0"); //MM
+    const day = now.getDate().toString().padStart(2, "0"); //DD
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = (hours % 12 || 12).toString(); //12시간으로 표시
+
+    return `${year}.${month}.${day}. ${ampm} ${formattedHours}:${minutes}`;
+}
+
 //Create
 function setItem(){
     const itemInput = document.getElementById("create");
@@ -81,11 +96,16 @@ function setItem(){
         return;
     }
     const newPost = document.createElement("li");
-    newPost.classList.add("post-item"); //post-item 클래스를 추가.
+    newPost.classList.add("post-item"); //post-item 클래스 추가.
 
     const textarea = document.createElement("textarea");
     textarea.value = content;
     textarea.readOnly = true;
+
+    //타임스탬프 표시
+    const timestamp = document.createElement("div"); //타임스탬프를 담을 div
+    timestamp.classList.add("timestamp"); //timestamp 클래스 추가.
+    timestamp.innerText = `Created: ${getTimestamp()}`; //방명록 생성 시 타임스탬프
     
     //Update
     const updateButton = document.createElement("button");
@@ -97,6 +117,10 @@ function setItem(){
         } else{
             textarea.readOnly = true;
             updateButton.innerText = "Edit";
+
+             // Update 타임스탬프
+             const updateTime = getTimestamp();
+             timestamp.innerText = `Updated: ${updateTime}`; //수정 시 타임스탬프 업데이트
         }
     };
 
@@ -113,6 +137,7 @@ function setItem(){
     buttonbox.appendChild(deleteButton);
 
     newPost.appendChild(textarea);
+    newPost.appendChild(timestamp);
     newPost.appendChild(buttonbox);
     //위 두 요소들은 형제요소가 된다.
 

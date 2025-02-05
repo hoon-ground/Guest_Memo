@@ -304,7 +304,7 @@ section .do-me .do-inner:hover i{
 /* #dynamic 요소에 active 클래스가 추가되면 ::after 요소가 사라지도록 해서 동적 커서효과를 나타냄. */
 
 #target{
-    margin-top:150vh;
+    margin-top:20vh;
     padding:1.25rem;
     width:62.5rem;
     height:6.25rem;
