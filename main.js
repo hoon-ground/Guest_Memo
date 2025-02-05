@@ -86,6 +86,51 @@ function getTimestamp() {
     return `${year}.${month}.${day}. ${ampm} ${formattedHours}:${minutes}`;
 }
 
+const postsPerPage = 5;
+let currentPage = 1;
+
+function renderPage(){
+    const allPosts = document.querySelectorAll("#my-post .post-item");
+    const totalPosts = allPosts.length;
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+    //모든 게시물 숨기기
+    allPosts.forEach((post, index) => {
+        if (Math.ceil((index + 1) / postsPerPage) === currentPage) {
+            post.style.display = "block"; // 현재 페이지 게시물만 표시
+        } else {
+            post.style.display = "none";
+        }
+    });
+
+    // 현재 페이지가 총 페이지 수를 초과하면 마지막 페이지로 이동
+    if (currentPage > totalPages && totalPages > 0) {
+        currentPage = totalPages;
+    }
+
+    renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+    const paginationContainer = document.getElementById("pagination");
+    paginationContainer.innerHTML = ""; // 기존 버튼 제거
+
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement("button");
+        button.innerText = i;
+        button.onclick = function () {
+            currentPage = i;
+            renderPage();
+        };
+        if (i === currentPage) {
+            button.classList.add("active"); // 현재 페이지 버튼 강조
+        } else {
+            button.classList.remove("active");
+        }
+        paginationContainer.appendChild(button);
+    }
+}
+
 //Create
 function setItem(){
     const itemInput = document.getElementById("create");
@@ -129,6 +174,15 @@ function setItem(){
     deleteButton.innerText = "Delete";
     deleteButton.onclick = function(){
         newPost.remove();
+
+        // 삭제 후 페이지 유효성 확인
+        const totalPosts = document.querySelectorAll("#my-post .post-item").length;
+        const totalPages = Math.ceil(totalPosts / postsPerPage);
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+
+        renderPage();
     }
 
     const buttonbox = document.createElement("div");
@@ -139,12 +193,26 @@ function setItem(){
     newPost.appendChild(textarea);
     newPost.appendChild(timestamp);
     newPost.appendChild(buttonbox);
-    //위 두 요소들은 형제요소가 된다.
+    //위 요소들은 형제요소가 된다.
 
-    document.getElementById("my-post").appendChild(newPost);
+    const postList = document.getElementById("my-post");
+    postList.appendChild(newPost);
+
+     // 새로운 게시물 추가 후 마지막 페이지로 이동
+     currentPage = Math.ceil(postList.children.length / postsPerPage);
 
     itemInput.value = "";
 
-    newPost.scrollIntoView({behavior: "smooth", block: "end"});
+    renderPage(); // 새 게시물 추가 후 페이지 다시 렌더링
+
+    newPost.scrollIntoView({ behavior: "smooth", block: "end" });
 }
+
+// 초기 페이지 렌더링
+renderPage();
+
+// HTML에서 페이징 버튼 컨테이너 추가
+const paginationContainer = document.createElement("div");
+paginationContainer.id = "pagination";
+document.getElementById("postlist").appendChild(paginationContainer);
 

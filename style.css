@@ -388,6 +388,14 @@ button:hover{
     font-weight:bold!important;
 }
 
+#pagination{
+    display:flex;
+    align-items:center;
+    display:flex;
+    justify-content:center;
+    gap:0.625rem;
+}
+
 /* 반응형 코드 적용 */
 /* 1140px : 큰 데스크톱 화면에서 중간 크기의 화면으로 넘어가는 기준 */
 @media screen and (max-width:1140px){
