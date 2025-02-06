@@ -21,7 +21,7 @@
   - **타임스탬프**: 작성(Create) 및 수정(Update)된 시각을 표시  
   - **페이징**: 방명록을 5개의 항목 단위로 페이지 처리  
 
-### 2) 영역 구현 (Area)  
+### 2) Sementic web : 영역 구현 (Area)  
 - **구성 요소**: Header, Main, Section, Background  
 - Header 메뉴 클릭 시 해당 영역으로 부드럽게 이동  
 
