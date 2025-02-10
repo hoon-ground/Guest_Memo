@@ -1,9 +1,13 @@
 *{
     margin:0;
     padding:0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
-/*초기화*/
+/*
+초기화.
+전체 요소에 box-sizing, margin, padding을 따로 설정안해두면 알아서 border-box, margin 0, padding 0이 자동적용된다.
+즉, 상속이 되는 것이다.
+*/
 
 a, a:link, a:visited{
     color:inherit;
