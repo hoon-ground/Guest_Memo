@@ -61,15 +61,18 @@ CSS **Media Query**를 활용하여 다양한 화면 크기에 대응:
 ## 5. 구현 환경 🌟  
 
 ### 1) 개발 툴  
+<p>
 - <img src="https://img.shields.io/badge/VS%20Code-0078d7?style=flat-square&logo=visual-studio-code&logoColor=white"/>  
 - <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/>  
 - <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"/>  
-
+</p>
 ### 2) 로컬 환경  
 - **Localhost**: `127.0.0.1`  
 - **PORT**: `5500`  
 
 ### 3) 사용 기술  
+<p>
 - <img src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=white"/>  
 - <img src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=white"/>  
 - <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>  
+</p>
