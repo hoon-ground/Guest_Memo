@@ -2,7 +2,7 @@
 
 ---
 
-## 1. 개괄 ✨  
+## 1. 개요 ✨  
 🎥 [데모 비디오 보기](https://youtu.be/IKBGnXQRDUY)
 
 - **Main**  
@@ -55,3 +55,21 @@ CSS **Media Query**를 활용하여 다양한 화면 크기에 대응:
 ### 2) CSS 코드 유효성 검사  
 - [CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) 결과:  
   > **축하합니다! 발견된 오류가 없습니다.**
+
+---
+
+## 5. 구현 환경 🌟  
+
+### 1) 개발 툴  
+- <img src="https://img.shields.io/badge/VS%20Code-0078d7?style=flat-square&logo=visual-studio-code&logoColor=white"/>  
+- <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/>  
+- <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"/>  
+
+### 2) 로컬 환경  
+- **Localhost**: `127.0.0.1`  
+- **PORT**: `5500`  
+
+### 3) 사용 기술  
+- <img src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=white"/>  
+- <img src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=white"/>  
+- <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>  
