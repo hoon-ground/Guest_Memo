@@ -1120,7 +1120,8 @@ HTML 문법으로 작성한 태그, 속성, 주석, 텍스트와 같은 구성 �
 
 
 <문서 객체 모델>
-웹 브라우저는 HTML 문서의 구성 요소를 객체로 인식한다. 웹 브라우저는 DOM을 생성할 수 있다.
+웹 브라우저는 HTML 문서의 구성 요소를 객체로 인식한다. 객체는 HTML 문법에 등장하지 않는 개념인데, 어떻게 웹 브라우저는 HTML 구성 요소를 객체로 인식할까?
+-> 웹 브라우저는 DOM을 생성할 수 있다.
 DOM : 웹 브라우저에 표시되는 HTML 문서 구조를 객체화한 모델 구조. 웹 브라우저는 생성한 문서 객체 모델을 통해 HTML 문서의 구성 요소를 객체로 인식할 수 있다. js도 웹 브라우저의 문서 객체 모델을 조작해 웹 브라우저에 표시되는 HTML 문서 구조를 변경하거나 새로운 구성 요소를 추가하는 등의 작업을 할 수 있다. 단, js는 웹 브라우저에 화면이 표시된 후에 문서 객체 모델을 조작할 수 있다.
 
 1. 문서 객체 모델이 생성되는 방식
@@ -1128,24 +1129,43 @@ DOM : 웹 브라우저가 HTML 문서를 해석 -> 해석한 HTML 문서 구조�
 
 DOM트리 : 나무를 뒤집어 놓은 형태의 자료구조인 트리 구조를 가진다.
 노드 : DOM 트리의 document 객체 하위에 HTML 태그 요소, 속성, 텍스트, 주석 등이 트리 형태로 구성되는데, 이를 노드라고 한다.
-노드 TYPE : 문서 노드, 요소 노드, 속성 노드, 텍스트 노드, 주석 노드
 
+2. 노드 타입 살펴보기
+문서 노드 : 최상위 document 객체의 노드 타입
+요소 노드 : h1, p 태그와 같은 요소의 노드 타입
+속성 노드 : href, src와 같은 속성의 노드 타입
+텍스트 노드 : 텍스트에 해당하는 노드 타입
+주석 노드 : 주석에 해당하는 노드 타입
 
 <노드 선택하기>
 js로 HTML 문서를 조작할 때 가장 먼저 할 일 : document 객체로 조작하고자 하는 DOM의 노드를 선택한다.
+주로 요소 노드를 선택해 조작한다.
 
 1. 속성으로 노드 선택하기
-
+모든 노드 탐색
+	-parentNode
+	-childNodes
+	-firstChild
+	-lastChild
+	-previousSibling
+	-nextSibling
+요소 노드 탐색
+	-parentElement
+	-children
+	-firstElementChild
+	-lastElementChild
+	-previousElementSibling
+	-nextElementSibling
 
 2. 메서드로 노드 선택하기
 노트 탐색 속성으로 노드를 선택하는 방법은 DOM 트리가 복잡할수록 원하는 노드를 찾아가기 어렵다. 따라서 일반적으로 요소 노드를 바로 선택할 수 있는 메서드를 이용한다. 
 	-1) get 메서드 : 속성값과 태그명 사용하기. document 객체에는 노드를 선택할 수 있는 여러 메서드가 있다.
 		-getElementById(<id 속성값>) : id 속성값과 일치하는 요소 노드를 "1개만" 선택한다.
-		-getElementsByClassName(<class 속성값>) : class 속성값과 일치하는 요소 노드를 모두 선택한다3.
+		-getElementsByClassName(<class 속성값>) : class 속성값과 일치하는 요소 노드를 모두 선택한다.
 		-getElementsByTagName(<태그명>) : 태그명과 일치하는 요소 노드를 모두 선택
 	getElementById를 제외한 2개의 메서드는 HTMLCollection 객체로 여러 요소를 한꺼번에 선택하기 때문에 배열처럼 인덱스로 접근할 수 있다.
 	-2) query 메서드 : CSS 선택자 사용하기
-		-querySelector(<CSS 선택자>) : 매개변수로 넘어오는 CSS 선택자에 해당하는 노드를 1개만 선택
+		-querySelector(<CSS 선택자>) : 매개변수로 넘어오는 CSS 선택자에 해당하는 노드를 1개만 선택(여러 개일 경우 DOM에서 가장 먼저 등장하는(즉, 위쪽에 있는) 요소 하나만 선택)
 		-querySelectorAll(<CSS 선택자>) : 매개변수로 넘어오는 CSS 선택자에 해당하는 노드를 모두 선택. NodeList 객체에 담아 반환한다.
 
 <노드 조작하기>
@@ -1161,10 +1181,96 @@ DOM을 선택하고 나면 선택한 노드에 여러 조작을 할 수 있다.
 2. 스타일 조작하기
 	선택한 노드의 타입이 요소 노드라면 style 속성으로 요소에 스타일(CSS)을 지정할 수 있다.
 		-<노드>.style.<CSS 속성명> = <속성값>;
+주의사항) CSS 속성 중에서 background-color 속성과 같이 속성명에 대시(-)가 있는 속성은 js에서 -를 뺄셈 연산자(-)로 인식하기 때문에, backgroundColor처럼 카멜 표기법으로 변경해서 작성해야 한다.
 
 3. 클래스 속성 조작하기
 	<노드>.classList.add("class 속성값"); // 추가
-	<노드>.classList.remove("class 속성값"); //삭제
-	<노드>.classList.toggle("class 속성값"); //추가와 삭제 반복
+	<노드>.classList.remove("class 속성값"); // 삭제
+	<노드>.classList.toggle("class 속성값"); // add() 메서드와 remove() 메서드를 반복해서 호출한다.
+물론 class 속성값에 ,를 구분자로 여러 개를 적용할 수 있다.
 
 4. 데이터 속성 조작하기
+data-* 속성 : HTML 문법에서 사용할 수 있는 속성 외에 사용자가 원하는 속성을 추가할 수 있게 한 사용자 정의 속성 (즉, HTML에서 사용자가 원하는 커스텀 데이터를 저장할 수 있도록 제공된 속성)
+js의 dataset 속성을 사용해 조작할 수 있다. dataset 속성은 HTML 문서에서 data-* 속성을 가져오거나 지정한다.
+
+data-* 속성의 규칙
+- data-로 시작해야 함.
+- 그 뒤에는 사용자 지정 이름을 붙일 수 있음( ex) data-user-id, data-role, data-product-price 등).
+- 속성명에서 data-를 제외한 부분은 dataset을 통해 JavaScript에서 접근할 때 camelCase로 변환됨. ( ex)data-user-id → dataset.userId )
+
+5. 메서드로 속성 조작하기
+지금까지는 document 객체의 속성으로 HTML 요소에 접근해 일부 속성을 조작할 수 있었다.
+하지만, 다음 메서드를 사용하면 모든 속성을 전체적으로 조작할 수도 있다.
+
+<노드>.getAttribute("속성명"); : 속성값을 가져온다.
+<노드>.setAttribute("속성명", "속성값"); : 속성값을 설정한다.
+<노드>.removeAttribute("속성명"); : 속성을 삭제한다.
+
+getAttribute() 메서드와 setAttribute() 메서드는 모든 속성의 상위 메서드라서 classList속성이나 dataset 속성으로 하는 조작을 전부 할 수 있다.
+
+classList 속성, setAttribute() 메서드
+classList 속성으로 class 속성값을 추가하거나 삭제하면 기존 요소가 가지고 있던 class 속성값을 보존하면서 추가하거나 삭제한다.
+하지만 setAttribute() 메서드는 아예 속성값을 새로 설정하는 것이어서 기존 class 속성값을 보존하지 않는다.
+classList 속성의 remove() 메서드와 removeAttribute() 메서드에서도 똑같다. remove()메서드는 기존 속성을 보존하면서 매개변수로 전달된 속성만 삭제하지만, removeAttribute()메서드는 속성 자체를 삭제한다.
+
+<노드 추가/삭제하기>
+
+1. 노드 추가하기
+새로운 요소를 화면에 추가하려면 먼저 DOM 트리에 새로운 노드를 생성하는 작업을 해야한다. 그리고 생성한 노드를 기존의 DOM 트리 노드와 연결한다.
+
+노드 생성
+	-createElement() : 요소 노드를 생성한다.
+	-createTextNode() : 텍스트 노드를 생성한다.
+	-createAttribute() : 속성 노드를 생성한다.
+노드 연결
+	-<기준 노드>.appendChild(<자식 노드>) : 기준 노드에 자식 노드를 연결한다.
+	-<기준 노드>.setAttributeNode(<속성 노드>) : 기준 노드에 속성 노드를 연결한다.
+
+DOM 트리는 여러 타입의 노드로 구성되지만, 주축이 되는 노드는 요소 노드이다. 그래서 일반적으로 DOM 트리에 새로운 노드를 연결할 때는 먼저 요소 노드를 생성한다.
+ex) const example = document.createElement("a");
+이제 생성된 노드를 기존 DOM 트리와 연결한다. 기존 노드에 자식 노드로 연결하므로 appendChild() 메서드를 사용한다.
+ex) 
+const example = document.createElement("a");
+document.body.appendChild(example);
+이렇게 하면 연결이 된다! 하지만, 단순하게 요소 노드만 연결했기 때문에 웹 브라우저에는 아무것도 보이지 않는다. 그래서 보통은 "텍스트 노드"도 함께 연결한다.
+ex)
+const txt_example = document.createTextNode("길벗");
+document.querySelector("a").appendChild(txt_example);
+이렇게하면 텍스트가 추가된다. 하지만 href, target등의 속성이 포함된 요소들은 "속성 노드"까지 생성해 연결해야 한다.
+ex)
+const href_example = document.createAttribute("href");
+href_example.value = "url주소"
+document.querySelector("a").setAttributeNode(href_example);
+속성 노드를 생성할 때는 createAttribute() 메서드를 사용한다. 그리고 생성된 속성 노드에 값을 추가할 때는 속성 노드의 value 속성에 값을 할당하면 된다.
+
+2. 노드 삭제하기
+<부모 노드>.removeChild(<자식 노드>)
+removeChild() 메서드는 부모 노드에 연결된 자식 노드를 삭제한다.
+삭제할 노드는 항상 부모 노드에서 removeChild()메서드를 사용해야 한다. 따라서 부모 노드를 반환하는 parentNode 속성으로 부모 노드에 접근해서 삭제한다.
+
+<폼 조작하기>
+HTML의 폼을 문서 객체 모델을 이용해 제어하는 방법을 배워보자.
+
+1. form 태그 선택하기
+HTML 폼 요소의 시작은 항상 form 태그. form 태그는 forms 속성과 name 속성으로 선택할 수 있다.
+
+forms 속성 사용하기
+document 객체의 forms 속성은 모든 form 태그의 노드 정보를 HMTLCollection 객체에 담아 반환한다.
+그래서 forms 속성을 사용하면 화면에 있는 form 요소 노드를 쉽게 선택할 수 있다.
+document.forms로 값을 출력해보면 HTMLCollection 객체에 모든 form 요소 노드의 정보가 담겨 있다. 하지만, 이 방법은 form 태그의 위치가 바뀌면 잘못 참조하게 되어 오류가 발생할 수 있다.
+
+name 속성 사용하기
+form 태그에 name 속성을 사용하면 forms 속성보다 훨씬 직관적으로 form 요소 노드를 선택할 수 있다.
+<form name="ex1">
+</form>
+이렇게 되면 name 속성값으로 form 요소 노드에 접근할 수 있다.
+ex) document.ex1
+
+name 속성값으로 접근하면 form 태그의 순서가 바뀌어도 문제가 발생하지 않는다.
+
+2. 폼 요소 선택하기
+폼 요소의 input, select, button 태그 등을 선택할 때는 elements 속성이나 name 속성을 사용한다.
+
+elements 속성 : form 요소 노드의 하위 노드 중 폼 요소 노드만 반환하는 속성.
+ex) document.ex1.elements 를 하면 내용이 출력된다. elements 속성은 HTMLFormControlsCollection 객체에 여러 개의 노드를 담아 반환한다.
+HTMLFormControlsCollection 객체에는 form 요소 노드의 하위에 있는 폼 요소 노드의 정보가 담겨있다.
