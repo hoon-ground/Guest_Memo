@@ -424,7 +424,7 @@ color는 이전에 배웠던 것과 동일.
 padding 영역에서 사용할 수 있는 속성은 margin 영역에서 사용하는 속성과 형식이 매우 비슷하다.
 
 
-4. content 영역 : 시작 태그와 종료 태그 사이에 사용된 콘텐츠가 속하는 영역. 따라서 달느 박스 모델의 구성 요소와는 다르게 content 영역은 content 영역 자체를 다루는 속성이 없다.
+4. content 영역 : 시작 태그와 종료 태그 사이에 사용된 콘텐츠가 속하는 영역. 따라서 다른 박스 모델의 구성 요소와는 다르게 content 영역은 content 영역 자체를 다루는 속성이 없다.
 content 영역에 영향을 주는 속성
 	1) width와 height 속성	width:<크기>; height:<크기>;
 	2) box-sizing 속성 : 화면에 보이는 요소의 width와 height는 "외부 여백인 margin 영역을 제외하고" border, padding, content 영역을 전부 포함한 크기가 된다. 따라서 어떤 요소를 화면에 표시할 때 처음 의도한 것처럼 100px로 표시하려면 width 속성값을 더 작게 설정하거나, box-sizing속성을 사용한다.
